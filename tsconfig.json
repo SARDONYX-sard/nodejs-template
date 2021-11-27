@@ -1,0 +1,25 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "lib": ["es6", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "removeComments": false,
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2015",
+    "paths": {
+      "@/helpers/*": ["src/helpers/*"],
+      "tests/*": ["tests/*"]
+    }
+  },
+  "include": ["./src/**/*", "tests"],
+  "exclude": ["node_modules", "./src/**/*.spec.ts"]
+}
