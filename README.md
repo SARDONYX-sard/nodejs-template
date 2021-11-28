@@ -1,7 +1,5 @@
 # Convert markdown file to Steam review
 
-![Build Status](images/converter.gif)
-
 ## Table of Contents
 
 <!-- TOC depthFrom:2 -->
