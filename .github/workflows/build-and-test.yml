@@ -70,8 +70,8 @@ jobs:
         with:
           path: "./node_modules"
           key: "node-modules-${{ needs.parameters.outputs.GITHUB_SHA }}-${{ matrix.node }}"
-      - name: "Build test"
-        run: "npm run build"
+      # - name: "Build test"
+      #   run: "npm run build"
       - name: "Execute tests"
         run: "npm test"
       - name: "Calculate coverage rate"
