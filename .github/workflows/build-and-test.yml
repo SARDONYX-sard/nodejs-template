@@ -26,20 +26,22 @@ jobs:
         node: ["16.8"]
     steps:
       - uses: "actions/checkout@v2"
-      - name: "Use Node.js"
-        uses: "actions/setup-node@v1"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.20.3
+
+      - name: "Use Node.js ${{ matrix.node }}"
+        uses: "actions/setup-node@v2"
         with:
           node-version: "${{ matrix.node }}"
+          cache: "pnpm"
+
       - name: "Cache dependencies"
         id: "node-modules-dependencies"
         uses: "actions/cache@v2"
         with:
           path: "./node_modules"
           key: "node-modules-${{ needs.parameters.outputs.GITHUB_SHA }}-${{ matrix.node }}"
-
-      - name: "Install pnpm"
-        run: "npm install -g pnpm"
-
       - name: "Install dependencies if needed"
         if: "steps.node-modules-dependencies.outputs.cache-hit != 'true'"
         run: "pnpm rb"
@@ -53,30 +55,25 @@ jobs:
         node: ["16.8"]
     steps:
       - uses: "actions/checkout@v2"
-      - name: "Use Node.js"
-        uses: "actions/setup-node@v1"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.20.3
+
+      - name: "Use Node.js ${{ matrix.node }}"
+        uses: "actions/setup-node@v2"
         with:
           node-version: "${{ matrix.node }}"
-
-      - name: "Install pnpm"
-        run: "npm install -g pnpm"
-      - name: "Install dependencies if needed"
-        if: "steps.node-modules-dependencies.outputs.cache-hit != 'true'"
-        run: "pnpm i"
+          cache: "pnpm"
 
       - name: "Restore cached dependencies"
         id: "node-modules-dependencies"
         uses: "actions/cache@v2"
         with:
           path: "./node_modules"
+
           key: "node-modules-${{ needs.parameters.outputs.GITHUB_SHA }}-${{ matrix.node }}"
-      - name: "Build test"
-        run: "npm run build"
-      - name: "Execute tests"
-        run: "npm test"
-      - name: "Calculate coverage rate"
-        if: "matrix.node == '12.13'"
-        uses: codecov/codecov-action@v2
+      - name: "Run tests"
+        run: "pnpm run test"
 
   lint:
     name: "Lint"
@@ -84,19 +81,18 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        node: ["12.17", "14.13", "16.8"]
+        node: ["16.8"]
     steps:
       - uses: "actions/checkout@v2"
-      - name: "Use Node.js"
-        uses: "actions/setup-node@v1"
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.20.3
+
+      - name: "Use Node.js ${{ matrix.node }}"
+        uses: "actions/setup-node@v2"
         with:
           node-version: "${{ matrix.node }}"
-
-      - name: "Install pnpm"
-        run: "npm install -g pnpm"
-      - name: "Install dependencies if needed"
-        if: "steps.node-modules-dependencies.outputs.cache-hit != 'true'"
-        run: "pnpm i"
+          cache: "pnpm"
 
       - name: "Restore cached dependencies"
         id: "node-modules-dependencies"
@@ -104,5 +100,6 @@ jobs:
         with:
           path: "./node_modules"
           key: "node-modules-${{ needs.parameters.outputs.GITHUB_SHA }}-${{ matrix.node }}"
-      - name: "Execute linters"
-        run: "npm run lint"
+
+      - name: "Run linters"
+        run: "pnpm run lint"

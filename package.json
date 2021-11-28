@@ -22,7 +22,7 @@
   },
   "main": "build/src/main.js",
   "scripts": {
-    "preinstall": "npx -y && husky install",
+    "preinstall": "husky install && npx only-allow pnpm -y",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "lint": "eslint ./src/**/*.ts",
     "lint:fix": "prettier --write ./ && eslint --fix ./src/**/*.ts",
