@@ -1,8 +1,12 @@
-name: "Build and test"
+name: "Node.js CI"
 on:
   push:
-    branches: ["master"]
-  pull_request: {}
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   parameters:
     name: "Set parameters"
@@ -19,7 +23,7 @@ jobs:
     needs: "parameters"
     strategy:
       matrix:
-        node: ["12.17", "14.13", "16.8"]
+        node: ["16.8"]
     steps:
       - uses: "actions/checkout@v2"
       - name: "Use Node.js"
@@ -46,7 +50,7 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        node: ["12.17", "14.13", "16.8"]
+        node: ["16.8"]
     steps:
       - uses: "actions/checkout@v2"
       - name: "Use Node.js"
@@ -80,7 +84,7 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        node: ["12.17", "14.13", "16.8"]
+        node: ["16.8"]
     steps:
       - uses: "actions/checkout@v2"
       - name: "Use Node.js"
