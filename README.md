@@ -1,10 +1,10 @@
-# Convert markdown file to Steam review
+# Node.js template
 
 ## Table of Contents
 
 <!-- TOC depthFrom:2 -->
 
-- [Convert markdown file to Steam review](#convert-markdown-file-to-steam-review)
+- [Node.js template](#nodejs-template)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Usage](#usage)
@@ -15,19 +15,14 @@
 
 ## Overview
 
-This is just a code that uses [mume](https://github.com/shd101wyy/mume#readme) to replace HTML with regular expressions.
+Code sample
 
 ## Usage
-
-- Convert markdown files in the content directory to steam's review format.
 
 ```shell
 pnpm install
 
-pnpm run start # Convert markdown to Steam review format
-
-pnpm run start -b # If you want to open the markdown file in a browser
-pnpm run start -i # Output HTML file
+pnpm run start # Execute main.ts
 ```
 
 ## Requirements
