@@ -11,11 +11,6 @@ jobs:
   parameters:
     name: "Set parameters"
     runs-on: "ubuntu-latest"
-    outputs:
-      GITHUB_SHA: "${{ steps.GITHUB_SHA.outputs.GITHUB_SHA }}"
-    steps:
-      - id: "GITHUB_SHA"
-        run: 'echo "::set-output name=GITHUB_SHA::$GITHUB_SHA"'
 
   build:
     name: "Build"
@@ -58,8 +53,6 @@ jobs:
           node-version: "${{ matrix.node }}"
           cache: "pnpm"
 
-      - name: "Restore cached dependencies"
-        id: "node-modules-dependencies"
       - name: "Run tests"
         run: "pnpm run test"
 
